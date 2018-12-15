@@ -1,23 +1,20 @@
-const path = require('path');
+var path = require('path');
 
 module.exports = {
-    mode: 'development',
-    entry: [
-      './src/index.js'
-    ],
-    target: 'node',
-    devtool: 'source-map',
+    entry: './src/index.ts',
+    devtool: 'inline-source-map',
     output: {
         path: path.resolve(__dirname, 'build'),
-        filename: 'bundle.js',
-        publicPath: 'build/'
+        filename: 'bundle.js'
+    },
+    resolve: {
+      extensions: ['.ts'] //resolve all the modules other than index.ts
     },
     module: {
         rules: [
             {
-                use: 'babel-loader',
-                exclude: /(node_modules)/,
-                test: /\.js$/
+                use: 'ts-loader',
+                test: /\.ts?$/
             }
         ]
     }

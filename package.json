@@ -2,12 +2,12 @@
   "name": "node-template",
   "version": "1.0.0",
   "description": "",
-  "main": "webpack.config.js",
+  "main": "index.ts",
   "scripts": {
-    "build": "webpack",
     "start": "npm-run-all --parallel watch:server watch:build",
+    "watch:server": "nodemon \"./build/bundle.js\" --watch \"./build\" ",
     "watch:build": "webpack --watch",
-    "watch:server": "nodemon --inspect=\"9229\" \"./build/bundle.js\" --watch \"./build\" "
+    "build": "webpack"
   },
   "author": "Aaron Adams <aadams99@gmail.com>",
   "license": "ISC",
@@ -25,6 +25,9 @@
   "dependencies": {
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
-    "source-map": "^0.7.3"
+    "inline-source-map": "^0.6.2",
+    "source-map": "^0.7.3",
+    "ts-loader": "^5.3.1",
+    "typescript": "^3.2.2"
   }
 }

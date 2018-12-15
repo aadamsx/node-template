@@ -276,3 +276,104 @@ To do your first build (with NPM or you'll get warnings)
 
 
 
+
+# TypeScript installation and configuration changes:
+
+```
+> yarn add typescript ts-loader inline-source-map
+> touch tsconfig.json
+```
+
+Changed webpack config
+
+```javascript
+var path = require('path');
+module.exports = {
+    entry: './src/index.ts',
+    devtool: 'inline-source-map',
+    output: {
+        path: path.resolve(__dirname, 'build'),
+        filename: 'bundle.js'
+    },
+    resolve: {
+      extensions: ['.ts'] //resolve all the modules other than index.ts
+    },
+    module: {
+        rules: [
+            {
+                use: 'ts-loader',
+                test: /\.ts?$/
+            }
+        ]
+    }
+}
+```
+
+Typescript config additions
+
+```json
+{
+  "name": "node-typescript-webpack-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "start": "npm-run-all --parallel watch:server watch:build",
+    "watch:server": "nodemon \"./build/bundle.js\" --watch \"./build\" ",
+    "watch:build": "webpack --watch",
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.12.1",
+    "npm-run-all": "^4.1.1",
+    "ts-loader": "^3.0.5",
+    "typescript": "^2.5.3",
+    "webpack": "^3.8.1"
+  }
+}
+{
+    "compilerOptions": {
+      "outDir": "./build/",
+      "noImplicitAny": true,
+      "target": "es5",
+      "sourceMap": true,
+      "allowJs": true
+    }
+  }
+}
+```
+
+Changed package config
+
+```json
+
+{
+  "name": "node-typescript-webpack-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "start": "npm-run-all --parallel watch:server watch:build",
+    "watch:server": "nodemon \"./build/bundle.js\" --watch \"./build\" ",
+    "watch:build": "webpack --watch",
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.12.1",
+    "npm-run-all": "^4.1.1",
+    "ts-loader": "^3.0.5",
+    "typescript": "^2.5.3",
+    "webpack": "^3.8.1"
+  }
+}
+```
+
+
+
+
