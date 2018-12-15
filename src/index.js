@@ -1,3 +1,8 @@
-import print from './es6module';
+import express from 'express';
 
-print("Hello!");
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => res.send('hello!'))
+
+app.listen(port, () => console.log(`Example app listening on port ${port}`))
